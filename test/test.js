@@ -1,3 +1,3 @@
-const { markdoc } = require('../dist/markdoc.umd')
+const path = 'Users/walden/Workspace/Walden/markdoc/dist'
 
-markdoc('./README.md', './temdocs')
+const regExp = new RegExp('')

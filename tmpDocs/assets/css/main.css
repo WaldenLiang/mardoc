@@ -22,7 +22,7 @@ html {
 
 body {
   font-family: "SF UI Text", "PingFang SC", -apple-system, -apple-system-body, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "微软雅黑", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  color: #24292e;
+  color: red;
   line-height: 1.5;
   font-weight: 300
 }

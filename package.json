@@ -117,11 +117,8 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
-    "@types/rimraf": "^2.0.3",
-    "copy-dir": "^1.2.0",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.5.3",
-    "marked": "^0.8.0",
-    "rimraf": "^2.7.1"
+    "marked": "^0.8.0"
   }
 }
