@@ -4,6 +4,9 @@
   "description": "",
   "keywords": [],
   "main": "dist/markdoc.umd.js",
+  "bin": {
+    "markdoc": "bin/cli.js"
+  },
   "module": "dist/markdoc.es5.js",
   "typings": "dist/types/markdoc.d.ts",
   "files": [
@@ -117,6 +120,7 @@
     "typescript": "^3.0.3"
   },
   "dependencies": {
+    "commander": "^4.0.1",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.5.3",
     "marked": "^0.8.0"
