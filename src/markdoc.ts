@@ -1,19 +1,24 @@
-import fs from 'fs-extra'
-import path from 'path'
-import Renderer from './core/Renderer'
+import { process } from './core/Generator'
+import { Options } from './types'
 
-export async function process(o: string, d: string, theme?: string): Promise<void> {
-  const renderer = new Renderer(theme)
+const defaultOptions: Options = {
+  origin: '',
+  destination: '',
+  toc: false,
+  ignoreH1: true,
+  tocDepth: 2
+}
 
-  try {
-    const mdRaw = fs.readFileSync(o, { encoding: 'utf8' })
-    const result = renderer.convert(mdRaw)
-    await fs.remove(d)
-    fs.mkdirpSync(d)
-    fs.writeFileSync(path.join(d, 'index.html'), result, { encoding: 'utf8' })
-    fs.copySync(renderer.getThemeAssetsPath(), path.join(d, 'assets'))
-    console.log('generate successfully')
-  } catch (e) {
+export function markdoc(options: Options): void {
+  const mergeOptions = Object.assign({}, defaultOptions, options)
+  const { origin, destination } = mergeOptions
+
+  if (!origin) throw new Error('must input the origin file')
+  if (!destination) throw new Error('must input the destination')
+
+  process(mergeOptions).then(() => {
+    console.log('convert successfully')
+  }).catch(e => {
     throw e
-  }
+  })
 }

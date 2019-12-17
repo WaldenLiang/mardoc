@@ -7,35 +7,15 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/main.css">
+    <link rel="stylesheet" href="./assets/css/iconfont.css">
     <link rel="stylesheet" href="./assets/css/idea.css">
     <title>Document</title>
 </head>
 <body>
-<nav class="tsd-navigation secondary">
-    <ul>
-      {{#each toc}}
-          <li>
-              <span><i class="iconfont icon-dabiaoti"></i><a href="{{href}}">{{text}}</a></span>
-            {{#equalsLength children 0}}
-            {{else}}
-                <ul>
-                  {{#each children}}
-                      <li>
-                          <span><i class="iconfont icon-xiaobiaoti"></i><a
-                                  href="{{href}}">{{text}}</a></span>
-                      </li>
-                  {{/each}}
-                </ul>
-            {{/equalsLength}}
-          </li>
-      {{/each}}
-    </ul>
-</nav>
-<div class="container container-main">
+<div class="container">
+  {{{renderToc toc}}}
     <div class="content-wrap">
-        <div class="tsd-panel tsd-typography">
-          {{{content}}}
-        </div>
+      {{{content}}}
     </div>
 </div>
 </body>
