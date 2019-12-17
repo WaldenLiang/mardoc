@@ -1,21 +1,25 @@
 {
-  "name": "markdoc",
-  "version": "0.0.0",
-  "description": "",
-  "keywords": [],
-  "main": "dist/markdoc.umd.js",
+  "name": "mardoc",
+  "version": "0.0.1",
+  "description": "A simple command line tool to convert a Markdown file into an HTML document.",
+  "keywords": [
+    "cli",
+    "markdown",
+    "docs"
+  ],
+  "main": "dist/mardoc.umd.js",
   "bin": {
-    "markdoc": "bin/cli.js"
+    "mardoc": "bin/cli.js"
   },
-  "module": "dist/markdoc.es5.js",
-  "typings": "dist/types/markdoc.d.ts",
+  "module": "dist/mardoc.es5.js",
+  "typings": "dist/types/mardoc.d.ts",
   "files": [
     "dist"
   ],
-  "author": "WaldenLiang <waldenliang@outlook.com>",
+  "author": "waldenliang <waldenliang@outlook.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/WaldenLiang/mardoc"
   },
   "license": "MIT",
   "engines": {
@@ -123,6 +127,7 @@
     "commander": "^4.0.1",
     "fs-extra": "^8.1.0",
     "handlebars": "^4.5.3",
-    "marked": "^0.8.0"
+    "marked": "^0.8.0",
+    "path-type": "^4.0.0"
   }
 }

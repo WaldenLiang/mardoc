@@ -11,7 +11,7 @@ import json from 'rollup-plugin-json'
 
 const pkg = require('./package.json')
 
-const libraryName = 'markdoc'
+const libraryName = 'mardoc'
 
 export default {
   input: `src/${libraryName}.ts`,

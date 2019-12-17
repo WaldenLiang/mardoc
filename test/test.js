@@ -1,4 +1,4 @@
-const { markdoc } = require('../dist/markdoc.umd')
+const { mardoc } = require('../dist/mardoc.umd')
 const options = {
   origin: './TEST.md',
   destination: './tmpDocs',
@@ -7,4 +7,4 @@ const options = {
   tocDepth: 4
 }
 
-markdoc(options)
+mardoc(options)
