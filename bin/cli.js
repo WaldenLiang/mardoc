@@ -3,7 +3,7 @@ const program = require('commander')
 const { mardoc } = require('../dist/mardoc.umd')
 
 program
-  .version('0.0.3', '-v, --version', 'output the current version')
+  .version('0.0.4', '-v, --version', 'output the current version')
   .description('A simple cli tool to convert markdown files to html docs')
   .requiredOption('-o, --origin <path>', 'the path of your md file')
   .requiredOption('-d, --destination <path>', 'the place will output your docs')

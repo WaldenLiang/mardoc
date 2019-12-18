@@ -22,7 +22,7 @@ var CHandlebars = /** @class */ (function () {
             return '<!-- empty -->';
         var list = "";
         toc.forEach(function (item) {
-            list += "<li><span><i></i><a href=\"" + item.href + "\">" + item.text + "</a></span>" + _this.insetChildrenUl(item.children) + "</li>";
+            list += "<li><span><a href=\"" + item.href + "\">" + item.text + "</a></span>" + _this.insetChildrenUl(item.children) + "</li>";
         });
         return "<ul>" + list + "</ul>";
     };

@@ -1,6 +1,6 @@
 {
   "name": "mardoc",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A simple command line tool to convert a Markdown file into an HTML document.",
   "keywords": [
     "cli",

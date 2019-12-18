@@ -51,7 +51,7 @@ export default class Renderer {
         if (level >= allowHeaderLevel && level < (this.tocDepth + allowHeaderLevel)) {
           const item = {
             index: this.headerIndexCounter,
-            text: text,
+            text: text.replace(/<(?:[^"'>]|(["'])[^"']*\1)*>/g, ''),
             level: level,
             href: `#${escapedText}`,
             children: new Array<TocItem>()
@@ -59,6 +59,8 @@ export default class Renderer {
           const delta = level - allowHeaderLevel
           let target = this.toc
           for (let i = 0; i < delta; i++) {
+            if (!target.length) break // 如果跳级，跳出
+            if (target[target.length - 1].level === level) break // 如果跳级，并且根上一个目录等级相同，跳出
             target = target[target.length - 1].children
           }
           target.push(item)

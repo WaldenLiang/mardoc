@@ -12780,7 +12780,7 @@
                 return '<!-- empty -->';
             var list = "";
             toc.forEach(function (item) {
-                list += "<li><span><i></i><a href=\"" + item.href + "\">" + item.text + "</a></span>" + _this.insetChildrenUl(item.children) + "</li>";
+                list += "<li><span><a href=\"" + item.href + "\">" + item.text + "</a></span>" + _this.insetChildrenUl(item.children) + "</li>";
             });
             return "<ul>" + list + "</ul>";
         };
@@ -12820,7 +12820,7 @@
                     if (level >= allowHeaderLevel && level < (_this.tocDepth + allowHeaderLevel)) {
                         var item = {
                             index: _this.headerIndexCounter,
-                            text: text,
+                            text: text.replace(/<(?:[^"'>]|(["'])[^"']*\1)*>/g, ''),
                             level: level,
                             href: "#" + escapedText,
                             children: new Array()
@@ -12828,6 +12828,10 @@
                         var delta = level - allowHeaderLevel;
                         var target = _this.toc;
                         for (var i = 0; i < delta; i++) {
+                            if (!target.length)
+                                break; // 如果跳级，跳出
+                            if (target[target.length - 1].level === level)
+                                break; // 如果跳级，并且根上一个目录等级相同，跳出
                             target = target[target.length - 1].children;
                         }
                         target.push(item);

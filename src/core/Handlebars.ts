@@ -22,7 +22,7 @@ export default class CHandlebars {
     if (!toc.length) return '<!-- empty -->'
     let list = ``
     toc.forEach(item => {
-      list += `<li><span><i></i><a href="${item.href}">${item.text}</a></span>${this.insetChildrenUl(item.children)}</li>`
+      list += `<li><span><a href="${item.href}">${item.text}</a></span>${this.insetChildrenUl(item.children)}</li>`
     })
     return `<ul>${list}</ul>`
   }
