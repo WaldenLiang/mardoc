@@ -95,7 +95,7 @@ function generate(options) {
                     throw e;
                 }
                 if (!flag_1) {
-                    throw new Error('Can not get any md file in ' + origin);
+                    throw new Error('Can not find any md file in ' + path_1.default.join(process.cwd(), origin));
                 }
             }
             return [2 /*return*/];

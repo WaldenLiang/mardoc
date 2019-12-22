@@ -44,7 +44,7 @@ function mardoc(options) {
         return __generator(this, function (_h) {
             switch (_h.label) {
                 case 0:
-                    _a = options.origin, origin = _a === void 0 ? './README.md' : _a, _b = options.destination, destination = _b === void 0 ? './docs' : _b, _c = options.toc, toc = _c === void 0 ? false : _c, _d = options.ignoreH1, ignoreH1 = _d === void 0 ? true : _d, _e = options.tocDepth, tocDepth = _e === void 0 ? 2 : _e, _f = options.theme, theme = _f === void 0 ? path_1.default.join(__dirname, '../theme/default') : _f, _g = options.codeBlockStyle, codeBlockStyle = _g === void 0 ? 'github' : _g;
+                    _a = options.origin, origin = _a === void 0 ? './README.md' : _a, _b = options.destination, destination = _b === void 0 ? './docs' : _b, _c = options.toc, toc = _c === void 0 ? true : _c, _d = options.ignoreH1, ignoreH1 = _d === void 0 ? true : _d, _e = options.tocDepth, tocDepth = _e === void 0 ? 2 : _e, _f = options.theme, theme = _f === void 0 ? path_1.default.join(__dirname, '../theme/default') : _f, _g = options.codeBlockStyle, codeBlockStyle = _g === void 0 ? 'github' : _g;
                     _h.label = 1;
                 case 1:
                     _h.trys.push([1, 3, , 4]);

@@ -937,32 +937,153 @@ img { max-width: 100%; }
 		<div class="tsd-panel tsd-typography">
 			<h1 id="mardoc">mardoc</h1>
 			<blockquote>
-				<p>A simple command line tool to convert a markdown file into an HTML document.</p>
+				<p>A simple command line tool that can convert markdown files into html documents. </p>
 			</blockquote>
 			<h2 id="installation">Installation</h2>
 			<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> install globally</span>
 npm install mardoc -g
 <span class="hljs-meta">#</span><span class="bash"> or install <span class="hljs-keyword">in</span> your special project</span>
 npm install mardoc --save-dev</code></pre>
+			<h2 id="new-features-v1-0-0-">New features (v1.0.0)</h2>
+			<ul>
+				<li>Can convert multy markdown files at once.</li>
+				<li>You can choose a variety of code block styles you like.</li>
+				<li>A markdown will only generate an html file without external references, making your documents more introductory and easier to manage.</li>
+			</ul>
+			<blockquote>
+				<p>Compared with the previous version, I added some new features in this version, and also solved some style problems.</p>
+			</blockquote>
 			<h2 id="usage">Usage</h2>
-			<pre><code class="language-shell">mardoc -o ./README.md -d ./docs/ -t</code></pre>
-			<p>options</p>
+			<p>Very easy to use, if you installed the mardoc globally, you only enter like below on your terminal.</p>
+			<pre><code class="language-shell">mardoc </code></pre>
+			<p>mardoc will automatically convert the <code>README.md</code> (that is, <code>./README.md</code>) files in the current path into html documents and save them in the <code>docs</code> (that is, <code>./docs</code>) folder in the current path.</p>
+			<p>More usage examples</p>
+			<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> You can specify the path to the generated file, including the file name</span>
+mardoc -o ./TEST.md -d ./docs/index.html
+<span class="hljs-meta">#</span><span class="bash"> You can also convert all markdown files <span class="hljs-keyword">in</span> a folder at once</span>
+mardoc -o ./dir/ -d ./docs/</code></pre>
+			<p>By default, mardoc generates documents without a toc, but you can generate a toc for documents with the option <code>-t</code>. like below:</p>
+			<pre><code class="language-shell">mardoc -t</code></pre>
+			<p>You can also customize your theme very conveniently, you only need to rewrite the style in the theme directory. At last enter the command just like below:</p>
+			<pre><code class="language-shell">mardoc -T /path/to/your/theme</code></pre>
+			<p>In addition, <strong>you can choose the style of the code block you like</strong>, as long as you simply enter the parameter &quot;-s&quot;，like below:</p>
+			<pre><code class="language-shell">mardoc -s dark
+<span class="hljs-meta">#</span><span class="bash"> Or</span>
+mardoc -s default
+<span class="hljs-meta">#</span><span class="bash"> Or</span>
+mardoc -s idea
+<span class="hljs-meta">#</span><span class="bash"> Or</span>
+mardoc -s xcode
+<span class="hljs-meta">#</span><span class="bash"> and other more styles</span></code></pre>
+			<p>Here are all the code block styles <a href="https://highlightjs.org/">(highlight.js)</a></p>
+			<pre><code class="language-javascript"><span class="hljs-string">'a11y-dark'</span>
+ <span class="hljs-string">'a11y-light'</span>
+ <span class="hljs-string">'agate'</span>
+ <span class="hljs-string">'an-old-hope'</span>
+ <span class="hljs-string">'androidstudio'</span>
+ <span class="hljs-string">'arduino-light'</span>
+ <span class="hljs-string">'arta'</span>
+ <span class="hljs-string">'ascetic'</span>
+ <span class="hljs-string">'atelier-cave-dark'</span>
+ <span class="hljs-string">'atelier-cave-light'</span>
+ <span class="hljs-string">'atelier-dune-dark'</span>
+ <span class="hljs-string">'atelier-dune-light'</span>
+ <span class="hljs-string">'atelier-estuary-dark'</span>
+ <span class="hljs-string">'atelier-estuary-light'</span>
+ <span class="hljs-string">'atelier-forest-dark'</span>
+ <span class="hljs-string">'atelier-forest-light'</span>
+ <span class="hljs-string">'atelier-heath-dark'</span>
+ <span class="hljs-string">'atelier-heath-light'</span>
+ <span class="hljs-string">'atelier-lakeside-dark'</span>
+ <span class="hljs-string">'atelier-lakeside-light'</span>
+ <span class="hljs-string">'atelier-plateau-dark'</span>
+ <span class="hljs-string">'atelier-plateau-light'</span>
+ <span class="hljs-string">'atelier-savanna-dark'</span>
+ <span class="hljs-string">'atelier-savanna-light'</span>
+ <span class="hljs-string">'atelier-seaside-dark'</span>
+ <span class="hljs-string">'atelier-seaside-light'</span>
+ <span class="hljs-string">'atelier-sulphurpool-dark'</span>
+ <span class="hljs-string">'atelier-sulphurpool-light'</span>
+ <span class="hljs-string">'atom-one-dark'</span>
+ <span class="hljs-string">'atom-one-dark-reasonable'</span>
+ <span class="hljs-string">'atom-one-light'</span>
+ <span class="hljs-string">'brown-paper'</span>
+ <span class="hljs-string">'brown-papersq'</span>
+ <span class="hljs-string">'codepen-embed'</span>
+ <span class="hljs-string">'color-brewer'</span>
+ <span class="hljs-string">'darcula'</span>
+ <span class="hljs-string">'dark'</span>
+ <span class="hljs-string">'darkula'</span>
+ <span class="hljs-string">'default'</span>
+ <span class="hljs-string">'docco'</span>
+ <span class="hljs-string">'dracula'</span>
+ <span class="hljs-string">'far'</span>
+ <span class="hljs-string">'foundation'</span>
+ <span class="hljs-string">'github'</span>
+ <span class="hljs-string">'github-gist'</span>
+ <span class="hljs-string">'gml'</span>
+ <span class="hljs-string">'googlecode'</span>
+ <span class="hljs-string">'gradient-dark'</span>
+ <span class="hljs-string">'grayscale'</span>
+ <span class="hljs-string">'gruvbox-dark'</span>
+ <span class="hljs-string">'gruvbox-light'</span>
+ <span class="hljs-string">'hopscotch'</span>
+ <span class="hljs-string">'hybrid'</span>
+ <span class="hljs-string">'idea'</span>
+ <span class="hljs-string">'ir-black'</span>
+ <span class="hljs-string">'isbl-editor-dark'</span>
+ <span class="hljs-string">'isbl-editor-light'</span>
+ <span class="hljs-string">'kimbie.dark'</span>
+ <span class="hljs-string">'kimbie.light'</span>
+ <span class="hljs-string">'lightfair'</span>
+ <span class="hljs-string">'magula'</span>
+ <span class="hljs-string">'mono-blue'</span>
+ <span class="hljs-string">'monokai'</span>
+ <span class="hljs-string">'monokai-sublime'</span>
+ <span class="hljs-string">'night-owl'</span>
+ <span class="hljs-string">'nord'</span>
+ <span class="hljs-string">'obsidian'</span>
+ <span class="hljs-string">'ocean'</span>
+ <span class="hljs-string">'paraiso-dark'</span>
+ <span class="hljs-string">'paraiso-light'</span>
+ <span class="hljs-string">'pojoaque'</span>
+ <span class="hljs-string">'purebasic'</span>
+ <span class="hljs-string">'qtcreator_dark'</span>
+ <span class="hljs-string">'qtcreator_light'</span>
+ <span class="hljs-string">'railscasts'</span>
+ <span class="hljs-string">'rainbow'</span>
+ <span class="hljs-string">'routeros'</span>
+ <span class="hljs-string">'school-book'</span>
+ <span class="hljs-string">'shades-of-purple'</span>
+ <span class="hljs-string">'solarized-dark'</span>
+ <span class="hljs-string">'solarized-light'</span>
+ <span class="hljs-string">'sunburst'</span>
+ <span class="hljs-string">'tomorrow'</span>
+ <span class="hljs-string">'tomorrow-night'</span>
+ <span class="hljs-string">'tomorrow-night-blue'</span>
+ <span class="hljs-string">'tomorrow-night-bright'</span>
+ <span class="hljs-string">'tomorrow-night-eighties'</span>
+ <span class="hljs-string">'vs'</span>
+ <span class="hljs-string">'vs2015'</span>
+ <span class="hljs-string">'xcode'</span>
+ <span class="hljs-string">'xt256'</span>
+ <span class="hljs-string">'zenburn'</span></code></pre>
+			<p>All options supported</p>
 			<pre><code class="language-shell">Usage: mardoc [options]
 
-A simple cli tool to convert markdown files to html doc files
+A simple command line tool that can convert markdown files into html documents.
 
 Options:
-  -v, --version             output the current version
-  -o, --origin &lt;path&gt;       the path of your md file
-  -d, --destination &lt;path&gt;  the place will output your docs
-  -t, --toc                 the flag whether generate the toc (default: false)
-  -i, --ignore-h1           the flag whether ignore heading 1 in the toc (default: true)
-  -D, --toc-depth [number]  the depth of the toc (default: 2)
-  -T, --theme &lt;path&gt;        the path of the your custom theme
-  -h, --help                output usage information</code></pre>
-			<p>The origin and the destination is required.</p>
-			<p>You also can override the theme, just copy the theme dir in the markdoc project to another place as your own theme dir, and override the main.css. At last enter the command just like below:</p>
-			<pre><code class="language-shell">mardoc -o ./README.md -d ./docs/ -T /path/to/your-theme</code></pre>
+  -v, --version                  output the current version
+  -o, --origin &lt;path&gt;            Enter the path of the markdown file or the folder where the markdown file is located (default: "./README.md")
+  -d, --destination &lt;path&gt;       Document generated path, which can be a html file path or a folder path (default: "./docs")
+  -t, --toc                      Choose whether you need to generate a toc (default: false)
+  -i, --ignore-h1                Choose whether to ignore heading 1 when generating a toc (default: true)
+  -D, --toc-depth [number]       Toc hierarchy (default: 2)
+  -T, --theme &lt;path&gt;             Custom theme path
+  -s, --code-block-style &lt;name&gt;  choose a code block style you like (default: "github")
+  -h, --help                     output usage information</code></pre>
+			<p>Thanks a lot!!</p>
 		</div>
 		<div style="position:relative;"><a name="typedoc-main-index" class="tsd-anchor"></a></div>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1007,7 +1128,7 @@ Options:
 				<div class="tsd-signature tsd-kind-icon">Code<wbr>Block<wbr>Style<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"a11y-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"a11y-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"agate"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"an-old-hope"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"androidstudio"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arduino-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"arta"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ascetic"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-cave-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-cave-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-dune-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-dune-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-estuary-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-estuary-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-forest-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-forest-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-heath-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-heath-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-lakeside-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-lakeside-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-plateau-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-plateau-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-savanna-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-savanna-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-seaside-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-seaside-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-sulphurpool-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atelier-sulphurpool-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atom-one-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atom-one-dark-reasonable"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"atom-one-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"brown-paper"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"brown-papersq"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"codepen-embed"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"color-brewer"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"darcula"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"darkula"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"default"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"docco"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"dracula"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"far"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"foundation"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"github"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"github-gist"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"gml"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"googlecode"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"gradient-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"grayscale"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"gruvbox-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"gruvbox-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hopscotch"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"hybrid"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"idea"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ir-black"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"isbl-editor-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"isbl-editor-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"kimbie.dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"kimbie.light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"lightfair"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"magula"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"mono-blue"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"monokai"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"monokai-sublime"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"night-owl"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"nord"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"obsidian"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"ocean"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"paraiso-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"paraiso-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"pojoaque"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"purebasic"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"qtcreator_dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"qtcreator_light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"railscasts"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"rainbow"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"routeros"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"school-book"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"shades-of-purple"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"solarized-dark"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"solarized-light"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"sunburst"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tomorrow"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tomorrow-night"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tomorrow-night-blue"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tomorrow-night-bright"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tomorrow-night-eighties"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"vs"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"vs2015"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"xcode"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"xt256"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"zenburn"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/9905876/src/types/index.ts#L9">types/index.ts:9</a></li>
+						<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/0c4e09f/src/types/index.ts#L9">types/index.ts:9</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1024,7 +1145,7 @@ Options:
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/9905876/src/core/Generator.ts#L6">core/Generator.ts:6</a></li>
+								<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/0c4e09f/src/core/Generator.ts#L6">core/Generator.ts:6</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1047,7 +1168,7 @@ Options:
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/9905876/src/mardoc.ts#L5">mardoc.ts:5</a></li>
+								<li>Defined in <a href="https://github.com/WaldenLiang/markdoc/blob/0c4e09f/src/mardoc.ts#L5">mardoc.ts:5</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

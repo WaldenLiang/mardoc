@@ -6,7 +6,7 @@ export async function mardoc(options: Options): Promise<void> {
   const {
     origin = './README.md',
     destination = './docs',
-    toc = false,
+    toc = true,
     ignoreH1 = true,
     tocDepth = 2,
     theme = path.join(__dirname, '../theme/default'),

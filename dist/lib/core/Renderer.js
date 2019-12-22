@@ -72,7 +72,7 @@ var Renderer = /** @class */ (function () {
             codeBlockStyleRaw = fs_extra_1.default.readFileSync(path_1.default.join(this.themeAssets, "/code-block-styles/" + this.codeBlockStyle + ".css"), { encoding: 'utf8' });
         }
         catch (e) {
-            throw new Error("Can not resolve the code block style named " + this.codeBlockStyle);
+            throw new Error("Can not resolve the code block style named \"" + this.codeBlockStyle + "\"");
         }
         var template = handlebars.compile(layoutRaw);
         // fs.writeFileSync(path.join(process.cwd(), '/tmpToc/toc.json'), JSON.stringify(this.toc), { encoding: 'utf8' })

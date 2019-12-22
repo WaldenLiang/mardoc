@@ -12762,7 +12762,12 @@ var CHandlebars = /** @class */ (function () {
         lib$1.registerHelper('renderToc', function (array) {
             if (!array.length)
                 return '<!-- toc empty -->';
-            return "<nav class=\"toc\">" + self.insetChildrenUl(array) + "</nav>";
+            return "<nav class=\"toc\" id=\"toc\"><span id=\"closeBtn\" class=\"close-menu iconfont icon-gary\"></span>" + self.insetChildrenUl(array) + "</nav>";
+        });
+        lib$1.registerHelper('arrayNotEmpty', function (array, options) {
+            if (array.length) {
+                return options.fn();
+            }
         });
     };
     CHandlebars.prototype.compile = function (source) {
@@ -36119,7 +36124,7 @@ var Renderer = /** @class */ (function () {
             codeBlockStyleRaw = lib.readFileSync(path.join(this.themeAssets, "/code-block-styles/" + this.codeBlockStyle + ".css"), { encoding: 'utf8' });
         }
         catch (e) {
-            throw new Error("Can not resolve the code block style named " + this.codeBlockStyle);
+            throw new Error("Can not resolve the code block style named \"" + this.codeBlockStyle + "\"");
         }
         var template = handlebars.compile(layoutRaw);
         // fs.writeFileSync(path.join(process.cwd(), '/tmpToc/toc.json'), JSON.stringify(this.toc), { encoding: 'utf8' })
@@ -36184,7 +36189,7 @@ function generate(options) {
                     throw e;
                 }
                 if (!flag_1) {
-                    throw new Error('Can not get any md file in ' + origin);
+                    throw new Error('Can not find any md file in ' + path.join(process.cwd(), origin));
                 }
             }
             return [2 /*return*/];
@@ -36198,7 +36203,7 @@ function mardoc(options) {
         return __generator(this, function (_h) {
             switch (_h.label) {
                 case 0:
-                    _a = options.origin, origin = _a === void 0 ? './README.md' : _a, _b = options.destination, destination = _b === void 0 ? './docs' : _b, _c = options.toc, toc = _c === void 0 ? false : _c, _d = options.ignoreH1, ignoreH1 = _d === void 0 ? true : _d, _e = options.tocDepth, tocDepth = _e === void 0 ? 2 : _e, _f = options.theme, theme = _f === void 0 ? path.join(__dirname, '../theme/default') : _f, _g = options.codeBlockStyle, codeBlockStyle = _g === void 0 ? 'github' : _g;
+                    _a = options.origin, origin = _a === void 0 ? './README.md' : _a, _b = options.destination, destination = _b === void 0 ? './docs' : _b, _c = options.toc, toc = _c === void 0 ? true : _c, _d = options.ignoreH1, ignoreH1 = _d === void 0 ? true : _d, _e = options.tocDepth, tocDepth = _e === void 0 ? 2 : _e, _f = options.theme, theme = _f === void 0 ? path.join(__dirname, '../theme/default') : _f, _g = options.codeBlockStyle, codeBlockStyle = _g === void 0 ? 'github' : _g;
                     _h.label = 1;
                 case 1:
                     _h.trys.push([1, 3, , 4]);

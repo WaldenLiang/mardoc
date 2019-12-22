@@ -88,7 +88,7 @@ export default class Renderer {
     try {
       codeBlockStyleRaw = fs.readFileSync(path.join(this.themeAssets, `/code-block-styles/${this.codeBlockStyle}.css`), { encoding: 'utf8' })
     } catch (e) {
-      throw new Error(`Can not resolve the code block style named ${this.codeBlockStyle}`)
+      throw new Error(`Can not resolve the code block style named "${this.codeBlockStyle}"`)
     }
     const template = handlebars.compile(layoutRaw)
     // fs.writeFileSync(path.join(process.cwd(), '/tmpToc/toc.json'), JSON.stringify(this.toc), { encoding: 'utf8' })

@@ -7,7 +7,7 @@ export interface TocItem {
 }
 
 export type CodeBlockStyle =
-  'a11y-dark'
+  | 'a11y-dark'
   | 'a11y-light'
   | 'agate'
   | 'an-old-hope'

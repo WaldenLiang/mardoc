@@ -10,7 +10,12 @@ var CHandlebars = /** @class */ (function () {
         handlebars_1.default.registerHelper('renderToc', function (array) {
             if (!array.length)
                 return '<!-- toc empty -->';
-            return "<nav class=\"toc\">" + self.insetChildrenUl(array) + "</nav>";
+            return "<nav class=\"toc\" id=\"toc\"><span id=\"closeBtn\" class=\"close-menu iconfont icon-gary\"></span>" + self.insetChildrenUl(array) + "</nav>";
+        });
+        handlebars_1.default.registerHelper('arrayNotEmpty', function (array, options) {
+            if (array.length) {
+                return options.fn();
+            }
         });
     };
     CHandlebars.prototype.compile = function (source) {

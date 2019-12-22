@@ -56,7 +56,7 @@ export async function generate(options: Options): Promise<void> {
       throw e
     }
     if (!flag) {
-      throw new Error('Can not get any md file in ' + origin)
+      throw new Error('Can not find any md file in ' + path.join(process.cwd(), origin))
     }
   }
 }

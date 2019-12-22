@@ -6,16 +6,16 @@ const chalk = require('chalk')
 
 program
   .version('1.0.0', '-v, --version', 'output the current version')
-  .description('A simple cli tool used to convert markdown files to html document files')
-  .option('-o, --origin <path>', 'the path of your single md file or a dir', './README.md')
-  .option('-d, --destination <path>', 'the place will output your docs', './docs')
-  .option('-t, --toc', 'the flag whether to generate the toc', false)
-  .option('-i, --ignore-h1', 'the flag whether ignore heading 1 in the toc', true)
-  .option('-D, --toc-depth [number]', 'the depth of the toc', 2)
-  .option('-T, --theme <path>', 'the path of the your custom theme')
+  .description('A simple command line tool that can convert markdown files into html documents.')
+  .option('-o, --origin <path>', 'Enter the path of the markdown file or the folder where the markdown file is located', './README.md')
+  .option('-d, --destination <path>', 'Document generated path, which can be a html file path or a folder path', './docs')
+  .option('-t, --toc', 'Choose whether you need to generate a toc', false)
+  .option('-i, --ignore-h1', 'Choose whether to ignore heading 1 when generating a toc', true)
+  .option('-D, --toc-depth [number]', 'Toc hierarchy', 2)
+  .option('-T, --theme <path>', 'Custom theme path')
   .option('-s, --code-block-style <name>', 'choose a code block style you like', 'github')
 
-const spinner = ora(`Task in progress...`)
+const spinner = ora(`Task in progress...\n`)
 spinner.start()
 
 const options = program.parse(process.argv)
@@ -25,5 +25,7 @@ mardoc(options).then(() => {
 }).catch(e => {
   spinner.stop()
   console.log(chalk.red(`  ${e.message}\n`))
+}).finally(() => {
+  spinner.stop()
 })
 
