@@ -37,56 +37,27 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var Generator_1 = require("./core/Generator");
-var path_type_1 = require("path-type");
-var defaultOptions = {
-    origin: '',
-    destination: '',
-    toc: false,
-    ignoreH1: true,
-    tocDepth: 2
-};
+var path_1 = require("path");
 function mardoc(options) {
-    var _this = this;
-    var mergeOptions = Object.assign({}, defaultOptions, options);
-    var origin = mergeOptions.origin, destination = mergeOptions.destination, toc = mergeOptions.toc, ignoreH1 = mergeOptions.ignoreH1, tocDepth = mergeOptions.tocDepth;
-    if (!origin)
-        throw new Error('The origin parameter is required');
-    if (!((function () { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, path_type_1.isFile(origin)];
+    return __awaiter(this, void 0, void 0, function () {
+        var _a, origin, _b, destination, _c, toc, _d, ignoreH1, _e, tocDepth, _f, theme, _g, codeBlockStyle, e_1;
+        return __generator(this, function (_h) {
+            switch (_h.label) {
+                case 0:
+                    _a = options.origin, origin = _a === void 0 ? './README.md' : _a, _b = options.destination, destination = _b === void 0 ? './docs' : _b, _c = options.toc, toc = _c === void 0 ? false : _c, _d = options.ignoreH1, ignoreH1 = _d === void 0 ? true : _d, _e = options.tocDepth, tocDepth = _e === void 0 ? 2 : _e, _f = options.theme, theme = _f === void 0 ? path_1.default.join(__dirname, '../theme/default') : _f, _g = options.codeBlockStyle, codeBlockStyle = _g === void 0 ? 'github' : _g;
+                    _h.label = 1;
                 case 1:
-                    _a.sent();
-                    return [2 /*return*/];
+                    _h.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, Generator_1.generate({ origin: origin, destination: destination, toc: toc, ignoreH1: ignoreH1, tocDepth: tocDepth, theme: theme, codeBlockStyle: codeBlockStyle })];
+                case 2:
+                    _h.sent();
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _h.sent();
+                    throw e_1;
+                case 4: return [2 /*return*/];
             }
         });
-    }); })() && /md$/.test(origin))) {
-        throw new Error('The origin must be a markdown file');
-    }
-    if (!destination)
-        throw new Error('The destination parameter is required');
-    if (!(function () { return __awaiter(_this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, path_type_1.isDirectory(destination)];
-                case 1:
-                    _a.sent();
-                    return [2 /*return*/];
-            }
-        });
-    }); })()) {
-        throw new Error('The destination must be a directory path');
-    }
-    if (tocDepth > 6)
-        throw new Error('The depth of the toc should not larger than 6');
-    if (typeof toc !== 'boolean')
-        throw new Error('The parameter type of the parameter toc is boolean');
-    if (typeof ignoreH1 !== 'boolean')
-        throw new Error('The parameter type of the parameter ignoreH1 is boolean');
-    Generator_1.process(mergeOptions).then(function () {
-        console.log('convert successfully');
-    }).catch(function (e) {
-        throw e;
     });
 }
 exports.mardoc = mardoc;

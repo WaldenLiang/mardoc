@@ -39,33 +39,68 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var fs_extra_1 = require("fs-extra");
 var path_1 = require("path");
 var Renderer_1 = require("./Renderer");
-function process(options) {
+function generate(options) {
     return __awaiter(this, void 0, void 0, function () {
-        var origin, destination, theme, toc, tocDepth, ignoreH1, renderer, mdRaw, result, e_1;
+        var origin, destination, theme, toc, tocDepth, ignoreH1, codeBlockStyle, renderer, stat, mdRaw, result, flag_1, files;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    origin = options.origin, destination = options.destination, theme = options.theme, toc = options.toc, tocDepth = options.tocDepth, ignoreH1 = options.ignoreH1;
-                    renderer = new Renderer_1.default(toc, ignoreH1, tocDepth, theme);
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
+            origin = options.origin, destination = options.destination, theme = options.theme, toc = options.toc, tocDepth = options.tocDepth, ignoreH1 = options.ignoreH1, codeBlockStyle = options.codeBlockStyle;
+            try {
+                // Instantiation
+                renderer = new Renderer_1.default(toc, ignoreH1, tocDepth, theme, codeBlockStyle);
+            }
+            catch (e) {
+                throw e;
+            }
+            try {
+                stat = fs_extra_1.default.lstatSync(origin);
+            }
+            catch (e) {
+                throw e;
+            }
+            if (stat.isFile()) {
+                if (!/\.md$/.test(origin)) {
+                    throw new Error(path_1.default.join(process.cwd(), origin) + " is not a md format file.");
+                }
+                try {
                     mdRaw = fs_extra_1.default.readFileSync(origin, { encoding: 'utf8' });
                     result = renderer.convert(mdRaw);
-                    return [4 /*yield*/, fs_extra_1.default.remove(destination)];
-                case 2:
-                    _a.sent();
-                    fs_extra_1.default.mkdirpSync(destination);
-                    fs_extra_1.default.writeFileSync(path_1.default.join(destination, 'index.html'), result, { encoding: 'utf8' });
-                    fs_extra_1.default.copySync(renderer.getThemeAssetsPath(), path_1.default.join(destination, 'assets'));
-                    return [3 /*break*/, 4];
-                case 3:
-                    e_1 = _a.sent();
-                    throw e_1;
-                case 4: return [2 /*return*/];
+                    if (/\.html$/.test(destination)) {
+                        fs_extra_1.default.outputFileSync(destination, result, { encoding: 'utf8' });
+                    }
+                    else {
+                        fs_extra_1.default.emptyDirSync(destination);
+                        fs_extra_1.default.outputFileSync(path_1.default.join(destination, origin.replace(/(.*\/)*([^.]+).*/ig, '$2') + ".html"), result, { encoding: 'utf8' });
+                    }
+                }
+                catch (e) {
+                    throw e;
+                }
             }
+            else if (stat.isDirectory()) {
+                flag_1 = false;
+                try {
+                    fs_extra_1.default.emptyDirSync(destination);
+                    files = fs_extra_1.default.readdirSync(origin, { encoding: 'utf8' });
+                    files.forEach(function (file) {
+                        if (/\.md$/.test(file)) {
+                            var mdRaw = fs_extra_1.default.readFileSync(file, { encoding: 'utf8' });
+                            var result = renderer.convert(mdRaw);
+                            var filename = path_1.default.join(destination, file.replace(/(.*\/)*([^.]+).*/ig, '$2') + ".html");
+                            fs_extra_1.default.outputFileSync(filename, result, { encoding: 'utf8' });
+                            flag_1 = true;
+                        }
+                    });
+                }
+                catch (e) {
+                    throw e;
+                }
+                if (!flag_1) {
+                    throw new Error('Can not get any md file in ' + origin);
+                }
+            }
+            return [2 /*return*/];
         });
     });
 }
-exports.process = process;
+exports.generate = generate;
 //# sourceMappingURL=Generator.js.map

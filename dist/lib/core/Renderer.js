@@ -4,23 +4,19 @@ var marked_1 = require("marked");
 var path_1 = require("path");
 var fs_extra_1 = require("fs-extra");
 var Handlebars_1 = require("./Handlebars");
-var defaultThemeLayout = path_1.default.join(__dirname, '../theme/default/layout.hbs');
-var defaultThemeAssets = path_1.default.join(__dirname, '../theme/default/assets');
+var highlight_js_1 = require("highlight.js");
 var Renderer = /** @class */ (function () {
-    function Renderer(toc, ignoreH1, tocDepth, theme) {
+    function Renderer(toc, ignoreH1, tocDepth, theme, codeBlockStyle) {
+        if (tocDepth > 6)
+            throw new Error('The depth of toc should not larger than 6');
         this.headerIndexCounter = 0;
         this.toc = new Array();
         this.ignoreH1 = ignoreH1;
         this.showToc = toc;
         this.tocDepth = tocDepth;
-        if (theme) {
-            this.themeLayout = path_1.default.join(theme, '/layout.hbs');
-            this.themeAssets = path_1.default.join(theme, '/assets');
-        }
-        else {
-            this.themeLayout = defaultThemeLayout;
-            this.themeAssets = defaultThemeAssets;
-        }
+        this.codeBlockStyle = codeBlockStyle;
+        this.themeLayout = path_1.default.join(theme, '/layout.hbs');
+        this.themeAssets = path_1.default.join(theme, '/assets');
         this.init();
     }
     Renderer.prototype.init = function () {
@@ -56,23 +52,31 @@ var Renderer = /** @class */ (function () {
             }
             return "<h" + level + " id=\"" + escapedText + "\" style=\"z-index: " + (999 - _this.headerIndexCounter) + "\"><span>" + text + "<a class=\"anchor\" href=\"#" + escapedText + "\"><span class=\"iconfont icon-anchor\"></span></a></span></h" + level + ">";
         };
+        renderer.code = function (code, language) {
+            return "<pre class=\"hljs\"><code class=\"language-" + language + "\">" + highlight_js_1.default.highlightAuto(code).value + "</code></pre>";
+        };
         marked_1.default.setOptions({
-            renderer: renderer,
-            highlight: function (code) {
-                return require('highlight.js').highlightAuto(code).value;
-            }
+            renderer: renderer
         });
     };
     Renderer.prototype.convert = function (source) {
+        this.toc = new Array();
+        // convert md to html
         source = marked_1.default(source);
         var handlebars = new Handlebars_1.default();
+        // get the layout raw data
         var layoutRaw = fs_extra_1.default.readFileSync(this.themeLayout, { encoding: 'utf8' });
+        // get the code block style raw data
+        var codeBlockStyleRaw;
+        try {
+            codeBlockStyleRaw = fs_extra_1.default.readFileSync(path_1.default.join(this.themeAssets, "/code-block-styles/" + this.codeBlockStyle + ".css"), { encoding: 'utf8' });
+        }
+        catch (e) {
+            throw new Error("Can not resolve the code block style named " + this.codeBlockStyle);
+        }
         var template = handlebars.compile(layoutRaw);
         // fs.writeFileSync(path.join(process.cwd(), '/tmpToc/toc.json'), JSON.stringify(this.toc), { encoding: 'utf8' })
-        return template({ content: source, toc: this.toc });
-    };
-    Renderer.prototype.getThemeAssetsPath = function () {
-        return this.themeAssets;
+        return template({ content: source, toc: this.toc, codeBlockStyle: codeBlockStyleRaw });
     };
     return Renderer;
 }());

@@ -1,4 +1,4 @@
-import { TocItem } from '../types';
+import { CodeBlockStyle, TocItem } from '../types';
 export default class Renderer {
     headerIndexCounter: number;
     toc: Array<TocItem>;
@@ -7,8 +7,8 @@ export default class Renderer {
     showToc: boolean;
     ignoreH1: boolean;
     tocDepth: number;
-    constructor(toc: boolean, ignoreH1: boolean, tocDepth: number, theme?: string);
+    codeBlockStyle: string;
+    constructor(toc: boolean, ignoreH1: boolean, tocDepth: number, theme: string, codeBlockStyle: CodeBlockStyle);
     init(): void;
     convert(source: string): string;
-    getThemeAssetsPath(): string;
 }
