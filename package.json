@@ -1,11 +1,22 @@
 {
   "name": "mardoc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple command line tool to convert a Markdown file into an HTML document.",
   "keywords": [
     "cli",
     "markdown",
-    "docs"
+    "docs",
+    "doc",
+    "documentation",
+    "generator",
+    "command-line",
+    "extact",
+    "extracting",
+    "generate",
+    "parser",
+    "html",
+    "tool",
+    "converter"
   ],
   "main": "dist/mardoc.umd.js",
   "bin": {

@@ -5,7 +5,7 @@ const ora = require('ora')
 const chalk = require('chalk')
 
 program
-  .version('1.0.0', '-v, --version', 'output the current version')
+  .version('1.0.1', '-v, --version', 'output the current version')
   .description('A simple command line tool that can convert markdown files into html documents.')
   .option('-o, --origin <path>', 'Enter the path of the markdown file or the folder where the markdown file is located', './README.md')
   .option('-d, --destination <path>', 'Document generated path, which can be a html file path or a folder path', './docs')
