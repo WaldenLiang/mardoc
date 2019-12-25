@@ -55,6 +55,9 @@ var Renderer = /** @class */ (function () {
         renderer.code = function (code, language) {
             return "<pre class=\"hljs\"><code class=\"language-" + language + "\">" + highlight_js_1.default.highlightAuto(code).value + "</code></pre>";
         };
+        renderer.table = function (thead, tbody) {
+            return "<div class=\"table-wrapper\"><table><thead>" + thead + "</thead><tbody>" + tbody + "</tbody></table></div>";
+        };
         marked_1.default.setOptions({
             renderer: renderer
         });

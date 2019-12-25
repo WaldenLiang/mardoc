@@ -71,6 +71,10 @@ export default class Renderer {
       return `<pre class="hljs"><code class="language-${language}">${hljs.highlightAuto(code).value}</code></pre>`
     }
 
+    renderer.table = (thead, tbody) => {
+      return `<div class="table-wrapper"><table><thead>${thead}</thead><tbody>${tbody}</tbody></table></div>`
+    }
+
     marked.setOptions({
       renderer: renderer
     })

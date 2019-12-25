@@ -196,6 +196,7 @@
         .container .content-wrap h6 span {
             z-index: 10;
             cursor: pointer;
+            word-wrap: break-word;
         }
 
         .container .content-wrap h1 span a.anchor,
@@ -291,8 +292,19 @@
             line-height: 1.43;
         }
 
-        .container .content-wrap h3::before {
+        .container .content-wrap h3 span {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            padding-left: 15px;
+        }
+
+        .container .content-wrap h3 span::before {
             content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
             display: inline-block;
             margin-bottom: 0.18em;
             margin-right: 8px;
@@ -327,12 +339,23 @@
             color: #777;
         }
 
+        .container .content-wrap .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            border-left: 1px solid #dadfe6;
+            border-right: 1px solid #dadfe6;
+        }
+
         .container .content-wrap table {
+            margin: 0 !important;
+            table-layout: fixed;
             padding: 0;
             width: 100%;
+            min-width: 600px;
             word-break: initial;
             border-collapse: collapse;
             border-spacing: 0;
+            overflow: hidden;
         }
 
         .container .content-wrap table.md-table tr:nth-child(2n) {
@@ -355,11 +378,13 @@
 
         .container .content-wrap table tr th:first-child,
         .container .content-wrap table tr td:first-child {
+            border-left: none;
             margin-top: 0;
         }
 
         .container .content-wrap table tr th:last-child,
         .container .content-wrap table tr td:last-child {
+            border-right: none;
             margin-bottom: 0;
         }
 
@@ -380,8 +405,7 @@
 
         .container .content-wrap ol,
         .container .content-wrap ul {
-            padding-left: 0;
-            list-style: none;
+            padding-left: 20px;
         }
 
         .container .content-wrap ol:first-child,
@@ -430,6 +454,7 @@
         }
 
         .container .content-wrap a {
+            word-wrap: break-word;
             color: #39f;
         }
 

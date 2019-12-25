@@ -1,7 +1,7 @@
 const { mardoc } = require('../dist/mardoc.umd')
 const options = {
   origin: './',
-  destination: './tmpDocs',
+  destination: './_tmpDocs',
   toc: true,
   ignoreH1: true,
   tocDepth: 6,
